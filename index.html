@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Where MobilityWare Wins Next — Qirui Zheng</title>
+<style>
+  :root {
+    --bg: #0e1116;
+    --panel: #161b22;
+    --panel-2: #1c232d;
+    --border: #2a313c;
+    --text: #e6edf3;
+    --muted: #9aa4b2;
+    --accent: #4f8cff;
+    --accent-2: #7c3aed;
+    --warn: #ff7b54;
+    --good: #34d399;
+    --pain: #ef4444;
+    --solve: #22c55e;
+    --highlight-bg: #1f2937;
+    --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f7f9fc;
+      --panel: #ffffff;
+      --panel-2: #f1f4f9;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --muted: #475569;
+      --accent: #2563eb;
+      --accent-2: #7c3aed;
+      --warn: #ea580c;
+      --good: #059669;
+      --pain: #dc2626;
+      --solve: #16a34a;
+      --highlight-bg: #fef3c7;
+      --shadow: 0 4px 16px rgba(15,23,42,0.08);
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                 "Hiragino Sans GB", "Microsoft YaHei", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* Layout */
+  .layout { display: flex; min-height: 100vh; }
+  .sidebar {
+    width: 280px;
+    background: var(--panel);
+    border-right: 1px solid var(--border);
+    padding: 28px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    flex-shrink: 0;
+  }
+  .sidebar h1 {
+    font-size: 18px;
+    margin: 0 0 4px 0;
+    line-height: 1.3;
+  }
+  .sidebar .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .nav-list { list-style: none; padding: 0; margin: 0; }
+  .nav-list li { margin: 0; }
+  .nav-list a.nav-link {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 2px;
+    border-left: 3px solid transparent;
+    transition: background .15s, border-color .15s;
+  }
+  .nav-list a.nav-link:hover {
+    background: var(--panel-2);
+    text-decoration: none;
+  }
+  .nav-list a.nav-link.active {
+    background: var(--panel-2);
+    border-left-color: var(--accent);
+    font-weight: 600;
+  }
+  .nav-list .num {
+    display: inline-block;
+    width: 22px;
+    color: var(--accent);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+  .sub-nav {
+    list-style: none;
+    padding-left: 22px;
+    margin: 4px 0 8px;
+    font-size: 13px;
+  }
+  .sub-nav a {
+    display: block;
+    padding: 4px 8px;
+    color: var(--muted);
+    border-radius: 6px;
+  }
+  .sub-nav a:hover { background: var(--panel-2); color: var(--text); text-decoration: none; }
+
+  .main {
+    flex: 1;
+    padding: 56px 64px;
+    max-width: 1000px;
+  }
+  .header-block {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    color: var(--accent);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+  }
+  h1.title {
+    font-size: 38px;
+    margin: 8px 0 6px;
+    line-height: 1.15;
+    font-weight: 800;
+  }
+  .deck {
+    color: var(--muted);
+    font-size: 18px;
+    font-style: italic;
+    margin: 0 0 14px;
+  }
+  .meta {
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .meta strong { color: var(--text); }
+
+  section.section {
+    padding: 24px 0 36px;
+    border-top: 1px dashed var(--border);
+    margin-top: 16px;
+    scroll-margin-top: 24px;
+  }
+  section.section:first-of-type { border-top: none; margin-top: 0; }
+  h2.section-title {
+    font-size: 26px;
+    margin: 0 0 6px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  h2.section-title .sec-num {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 20px;
+  }
+  h3 { font-size: 18px; margin: 26px 0 8px; }
+  h4 { font-size: 15px; margin: 18px 0 6px; color: var(--accent); }
+  p { margin: 10px 0; }
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  strong { color: var(--text); font-weight: 700; }
+  em { color: var(--muted); }
+
+  /* Tabs (categories that can be clicked) */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--muted);
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: color .15s, border-color .15s;
+    font-family: inherit;
+  }
+  .tab-btn:hover { color: var(--text); }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fadeIn .25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* Callouts */
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--panel);
+    padding: 14px 18px;
+    border-radius: 6px;
+    margin: 14px 0;
+    box-shadow: var(--shadow);
+  }
+  .callout.pain {
+    border-left-color: var(--pain);
+    background: linear-gradient(90deg, rgba(239,68,68,0.08), transparent 60%);
+  }
+  .callout.solve {
+    border-left-color: var(--solve);
+    background: linear-gradient(90deg, rgba(34,197,94,0.10), transparent 60%);
+  }
+  .callout.insight {
+    border-left-color: var(--accent-2);
+    background: linear-gradient(90deg, rgba(124,58,237,0.10), transparent 60%);
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+  .callout.pain .label { background: var(--pain); color: white; }
+  .callout.solve .label { background: var(--solve); color: white; }
+  .callout.insight .label { background: var(--accent-2); color: white; }
+
+  /* KPI Grid */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 18px 0;
+  }
+  .kpi {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .kpi .num {
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .kpi .label {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 6px;
+  }
+
+  /* Competitor cards */
+  .comp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 14px;
+    margin: 16px 0;
+  }
+  .comp-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+  }
+  .comp-card h4 { margin-top: 0; color: var(--text); font-size: 16px; }
+  .comp-card .role {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--panel-2);
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  /* Pain x Solution two-column */
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px 0;
+  }
+  @media (max-width: 800px) { .pair { grid-template-columns: 1fr; } }
+
+  /* Initiative cards */
+  .initiative {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin: 18px 0;
+    box-shadow: var(--shadow);
+  }
+  .initiative h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    background: var(--accent);
+    color: white;
+  }
+  .row-mech {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 8px 14px;
+    margin: 12px 0;
+    font-size: 14.5px;
+  }
+  .row-mech .k {
+    color: var(--muted);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 1px;
+    padding-top: 2px;
+  }
+
+  /* 90-day timeline */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 16px 0;
+  }
+  @media (max-width: 800px) { .timeline { grid-template-columns: 1fr; } }
+  .phase {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    position: relative;
+  }
+  .phase .days {
+    color: var(--accent);
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .phase h4 {
+    color: var(--text);
+    margin: 6px 0 10px;
+    font-size: 16px;
+  }
+  .phase ul { padding-left: 18px; margin: 8px 0; font-size: 14px; }
+
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Mobile */
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 1000;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+  }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    .sidebar {
+      position: fixed;
+      top: 0; left: -300px;
+      height: 100vh;
+      transition: left .25s;
+      z-index: 999;
+    }
+    .sidebar.open { left: 0; }
+    .menu-toggle { display: block; }
+    .main { padding: 70px 24px 40px; }
+    h1.title { font-size: 28px; }
+  }
+
+  /* Print */
+  @media print {
+    .sidebar, .menu-toggle, .tabs { display: none; }
+    .tab-panel { display: block !important; }
+    .main { padding: 0; max-width: none; }
+    body { background: white; color: black; font-size: 12px; }
+    .callout, .initiative, .phase, .kpi, .comp-card { box-shadow: none; border: 1px solid #ddd; }
+  }
+</style>
+</head>
+<body>
+
+<button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰ Menu</button>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <h1>Where MobilityWare<br/>Wins Next</h1>
+    <div class="subtitle">A strategic UA memo · Qirui Zheng</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#why" class="nav-link"><span class="num">0</span>Why this memo</a></li>
+        <li><a href="#industry" class="nav-link"><span class="num">1</span>Industry context</a></li>
+        <li><a href="#position" class="nav-link"><span class="num">2</span>MobilityWare's position</a></li>
+        <li><a href="#competitors" class="nav-link"><span class="num">3</span>Who's beating us</a>
+          <ul class="sub-nav">
+            <li><a href="#c-grandharvest">Solitaire Grand Harvest</a></li>
+            <li><a href="#c-rmg">Solitaire Cash / Smash</a></li>
+            <li><a href="#c-microsoft">Microsoft Solitaire</a></li>
+            <li><a href="#c-brainium">Brainium</a></li>
+            <li><a href="#c-tripledot">Tripledot</a></li>
+          </ul>
+        </li>
+        <li><a href="#pains" class="nav-link"><span class="num">4</span>What hurts most <span style="color:var(--pain);font-weight:800">●</span></a></li>
+        <li><a href="#initiatives" class="nav-link"><span class="num">5</span>What I'd do — 5 initiatives <span style="color:var(--solve);font-weight:800">●</span></a>
+          <ul class="sub-nav">
+            <li><a href="#i-1">5.1 Trust framework</a></li>
+            <li><a href="#i-2">5.2 HVU lookalike loop</a></li>
+            <li><a href="#i-3">5.3 SKAN creative engine</a></li>
+            <li><a href="#i-4">5.4 Emerging-markets sprint</a></li>
+            <li><a href="#i-5">5.5 Cross-title synergy</a></li>
+          </ul>
+        </li>
+        <li><a href="#ninety" class="nav-link"><span class="num">6</span>First ninety days</a></li>
+        <li><a href="#close" class="nav-link"><span class="num">7</span>Closing note</a></li>
+        <li><a href="#sources" class="nav-link"><span class="num">★</span>Sources</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main class="main">
+
+    <div class="header-block" id="why">
+      <div class="eyebrow">Strategic Memo · UA · Privacy-First Era</div>
+      <h1 class="title">Where MobilityWare Wins Next</h1>
+      <p class="deck">A strategic perspective on UA in the privacy-first, LTV-first era.</p>
+      <p class="meta">
+        Prepared for <strong>Chris Kim</strong> and <strong>Corvin Ampleev</strong>, Directors of User Acquisition<br/>
+        By <strong>Qirui Zheng</strong>
+      </p>
+    </div>
+
+    <!-- 0. Why -->
+    <section class="section">
+      <h2 class="section-title"><span class="sec-num">0</span>Why this memo</h2>
+      <p>
+        Most candidates submit a résumé and hope the conversation does the rest. I'd rather show you, on paper, how I think about the
+        business you actually run — so when we talk, we're working from a shared frame instead of building one from scratch.
+      </p>
+      <p>
+        This is a single-pass strategic read. It's organized around six questions a UA Director thinks about: where the industry is going,
+        where MobilityWare sits inside it, who's beating us and how, what hurts most, what I'd do about it, and what the first ninety days
+        look like. Where I'm inferring rather than knowing, I say so.
+      </p>
+    </section>
+
+    <!-- 1. Industry -->
+    <section class="section" id="industry">
+      <h2 class="section-title"><span class="sec-num">1</span>The industry context, briefly</h2>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="num">$126B</div><div class="label">Mobile gaming market 2025 (Statista via Moloco)</div></div>
+        <div class="kpi"><div class="num">2.4B</div><div class="label">Players projected by 2029</div></div>
+        <div class="kpi"><div class="num">30–38%</div><div class="label">iOS opt-in rate, casual gaming (Adjust 2025)</div></div>
+        <div class="kpi"><div class="num">+140%</div><div class="label">Top 1% iOS bid prices, 2024</div></div>
+      </div>
+
+      <p>That growth is no longer evenly distributed. Three structural shifts have re-shaped UA economics in the last 24 months:</p>
+
+      <h3>1.1 The post-ATT measurement world is permanent</h3>
+      <p>
+        SKAN postbacks arrive 24–72 hours late and at coarsened granularity. iOS opt-in rates for casual gaming sit around
+        <strong>30–38%</strong>. The "we'll wait for things to normalize" posture has run out of runway — partners and tools that don't
+        operate cleanly under SKAN are not coming back.
+      </p>
+
+      <h3>1.2 High-value users dominate revenue concentration</h3>
+      <p>
+        Per Moloco's 2025 <em>State of Mobile Gaming</em>, the <strong>top 5% of US iOS players (just 0.02% of global installs)
+        generate 20% of global gaming revenue.</strong> Top 1% iOS bid prices rose 140% in 2024. The competitive auction is no longer
+        about installs at scale — it's about installs that compound.
+      </p>
+
+      <h3>1.3 Casual card has bifurcated</h3>
+      <p>
+        Classic mechanics + ad monetization (the historical MobilityWare lane) now competes with meta-game-driven IAP studios
+        (Playtika's Solitaire Grand Harvest) and real-money skill operators (Papaya's Solitaire Cash). The economic envelopes are
+        no longer comparable.
+      </p>
+
+      <div class="callout insight">
+        <span class="label">Why these compound</span>
+        Privacy constrains measurement → which makes high-value-user identification harder → which makes meta-game-driven LTV more
+        strategically valuable → which raises the CPI ceiling competitors can sustain. A UA team that doesn't read these forces
+        together will lose ground at every step.
+      </div>
+    </section>
+
+    <!-- 2. Position -->
+    <section class="section" id="position">
+      <h2 class="section-title"><span class="sec-num">2</span>MobilityWare's position</h2>
+      <p>
+        I want to be direct: this is a studio with a specific kind of strength that's also a specific kind of vulnerability,
+        and the role you're hiring for is exactly at the intersection.
+      </p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="strength">Strengths (real & rare)</button>
+        <button class="tab-btn" data-tab="vuln">Vulnerability (structural)</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-strength">
+        <div class="kpi-grid">
+          <div class="kpi"><div class="num">2008</div><div class="label">Solitaire shipped Day 1 of the App Store</div></div>
+          <div class="kpi"><div class="num">#1</div><div class="label">Solitaire app globally (InMobi case study)</div></div>
+          <div class="kpi"><div class="num">100M+</div><div class="label">Downloads on flagship app</div></div>
+          <div class="kpi"><div class="num">35 yrs</div><div class="label">Of category authority</div></div>
+        </div>
+        <p>
+          The portfolio — Solitaire, Spider Solitaire, FreeCell, Pyramid, TriPeaks, Castle, Mahjong, Bubble Shooter Pop, plus
+          licensed titles like Monopoly Solitaire — represents 35 years of category authority that no challenger can replicate.
+          The audience is loyal, lightweight, and offline-friendly in ways that survive every platform shift.
+        </p>
+      </div>
+
+      <div class="tab-panel" id="tab-vuln">
+        <div class="callout pain">
+          <span class="label">Structural Vulnerability</span>
+          The portfolio is <strong>predominantly ad-monetized</strong>. In a privacy-first world, ad-monetized titles face two
+          compounding pressures simultaneously:
+          <ul>
+            <li>Their measurement layer is the <strong>most degraded by ATT</strong>.</li>
+            <li>Their LTV ceiling is set by <strong>ad-revenue rates</strong> rather than IAP depth.</li>
+          </ul>
+        </div>
+        <p>
+          The classic + daily-challenge gameplay loop has aged — recent additions (Jigsaw events, Arcade Goal, Winning Animation
+          Collection, weekly tournaments, multiplayer) are the right direction but trail full meta-game competitors by a meaningful gap.
+        </p>
+        <p>
+          This is not a critique. It's the work that's in front of the UA team — and the reason a thoughtful analyst hire matters now.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. Competitors -->
+    <section class="section" id="competitors">
+      <h2 class="section-title"><span class="sec-num">3</span>Who's beating us, and how</h2>
+      <p>Five competitors define the strategic landscape. Each plays a different game.</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="grandharvest">Grand Harvest</button>
+        <button class="tab-btn" data-tab="rmg">RMG titles</button>
+        <button class="tab-btn" data-tab="microsoft">Microsoft</button>
+        <button class="tab-btn" data-tab="brainium">Brainium</button>
+        <button class="tab-btn" data-tab="tripledot">Tripledot</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-grandharvest">
+        <div class="comp-card" id="c-grandharvest">
+          <span class="role">Structural Threat</span>
+          <h4>Solitaire Grand Harvest (Playtika / Supertreat)</h4>
+          <p>
+            Married TriPeaks mechanics to a farm meta-game that lifted retention, IAP penetration, and LTV simultaneously.
+            Public estimates suggest <strong>50M+ installs</strong> and IAP shares around <strong>85%</strong>.
+          </p>
+          <div class="kpi-grid">
+            <div class="kpi"><div class="num">1.4–1.6×</div><div class="label">Their LTV/CPI ratio (likely)</div></div>
+            <div class="kpi"><div class="num">~0.82×</div><div class="label">MobilityWare's blended ratio (inferred)</div></div>
+          </div>
+          <div class="callout insight">
+            <span class="label">The Gap = $$$</span>
+            That gap is the <strong>meta-game gap</strong> — expressed in dollars, it's the reason they can outbid us in
+            privacy-constrained auctions for the same user.
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-rmg">
+        <div class="comp-card" id="c-rmg">
+          <span class="role">Different Rules</span>
+          <h4>Solitaire Cash (Papaya) &amp; Solitaire Smash (Playtika)</h4>
+          <p>
+            Real-money gaming (RMG), age-gated, geo-restricted, with revenue per active user
+            <strong>5–7×</strong> a typical free-to-play casual title.
+          </p>
+          <p><strong>What we can borrow:</strong> creative hooks (urgency, leaderboard, near-loss recovery) and D7 retention tactics.</p>
+          <p><strong>What we cannot borrow:</strong> their unit economics. Competitive decks that pretend RMG is comparable to F2P are wrong.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-microsoft">
+        <div class="comp-card" id="c-microsoft">
+          <span class="role">Brand &amp; Distribution</span>
+          <h4>Microsoft Solitaire Collection</h4>
+          <p>Low UA spend (estimated <strong>under $1M monthly</strong>), heavy organic share via Xbox Live, daily-challenge cadence as a retention engine.</p>
+          <p><strong>The lesson:</strong> ASO and store-listing CRO can substitute for paid spend at the right brand level.</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-brainium">
+        <div class="comp-card" id="c-brainium">
+          <span class="role">Quality Benchmark</span>
+          <h4>Brainium</h4>
+          <p>Clean classic gameplay, strong reviews, light ads + IAP. Worth watching as the control group for "what does a high-quality classic experience without a meta-layer look like at scale."</p>
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-tripledot">
+        <div class="comp-card" id="c-tripledot">
+          <span class="role">Operational Threat</span>
+          <h4>Tripledot Studios</h4>
+          <p>
+            Classic mechanics with light meta, but a UA-first organizational culture and a creative iteration cadence
+            (<strong>weekly</strong>) that's <strong>2× faster</strong> than most studios.
+          </p>
+          <div class="callout insight">
+            <span class="label">Reframe</span>
+            We're not behind a different company — we're a parallel company with different leverage. They have UA capability discipline.
+            We have OG brand authority and 100M+ installs of cross-promo inventory most studios would kill to own.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Pain points -->
+    <section class="section" id="pains">
+      <h2 class="section-title"><span class="sec-num">4</span>What hurts most <span style="color:var(--pain)">●</span></h2>
+      <p>Four pain points, in priority order. <em>(Click each tab — these are the difficulties that frame the initiatives in §5.)</em></p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-tab="pain-1">4.1 Attribution fragmentation</button>
+        <button class="tab-btn" data-tab="pain-2">4.2 Meta-game LTV ceiling</button>
+        <button class="tab-btn" data-tab="pain-3">4.3 SKAN creative cadence</button>
+        <button class="tab-btn" data-tab="pain-4">4.4 Emerging-markets gap</button>
+      </div>
+
+      <div class="tab-panel active" id="tab-pain-1">
+        <div class="callout pain">
+          <span class="label">Pain 4.1 — Attribution Fragmentation</span>
+          UA data lives in <strong>10+ silos that disagree by double digits</strong>. Network self-report claims more than MMP credits more
+          than SKAN postbacks more than incrementality measures. A single campaign can produce four different "true" install counts depending
+          on which dashboard you open.
+        </div>
+        <p>
+          This isn't a tooling problem — AppsFlyer SSOT (which the team already runs, per the InMobi case study) is the right backbone.
+          It's a <strong>trust framework problem</strong>: which partners deserve which level of reported-vs-incremental discount, and how
+          does that show up in budget allocation. Until that framework is codified, every channel-mix decision is partly negotiation, partly guesswork.
+        </p>
+        <div class="callout solve">
+          <span class="label">My Solution → Initiative 5.1</span>
+          A per-partner trust score across 5 dimensions, applied as a discount on reported ROAS. Turns "Meta feels overstated" into a number that travels to Finance.
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-pain-2">
+        <div class="callout pain">
+          <span class="label">Pain 4.2 — Meta-game LTV Ceiling</span>
+          As §3 framed, the Grand Harvest gap is roughly <strong>0.6–0.8×</strong> in pLTV/CPI terms. This is the single largest
+          <strong>structural variable</strong> in MobilityWare's UA economics.
+        </div>
+        <p>
+          It's not a UA team problem — it's a product roadmap input that the UA team should advocate for with data. Recent product moves
+          (Jigsaw events, Arcade Goal) are pointing the right direction; the question is whether UA can quantify which meta-features earn
+          the LTV needed to support competitive CPI bids on iOS.
+        </p>
+        <div class="callout solve">
+          <span class="label">My Solution → Initiative 5.2</span>
+          Whale-lookalike loop on first-party HVU signature. Buys time while product closes the meta-game gap by extracting the LTV we already have.
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-pain-3">
+        <div class="callout pain">
+          <span class="label">Pain 4.3 — SKAN-aware Creative Cadence</span>
+          Chris's split of UA and creative as "two separate tracks for the brain" was the right organizational call. The follow-on operational
+          challenge is making creative testing produce reliable readouts when SKAN conversion values are coarse and probabilistic data is sparse.
+        </div>
+        <p>
+          Most studios still test creative the way they tested it in 2020 and accept the noise. The opportunity is a CV-mapping + 2-week cadence
+          designed <em>for</em> SKAN, not despite it.
+        </p>
+        <div class="callout solve">
+          <span class="label">My Solution → Initiative 5.3</span>
+          6-bucket conversion-value mapping, restricted to networks with creative-ID propagation 4+/5, validated by Spearman ρ &gt; 0.6 against Android determined-data rankings.
+        </div>
+      </div>
+
+      <div class="tab-panel" id="tab-pain-4">
+        <div class="callout pain">
+          <span class="label">Pain 4.4 — Emerging-markets Under-investment</span>
+          Tier-1 markets generate <strong>35%</strong> of global mobile gaming revenue but show slowing growth from saturation. Brazil, Mexico,
+          Indonesia, the Philippines have lower bid pressure, growing iOS share, and D7 retention parity to T1 in casual card.
+        </div>
+        <p>
+          The honest read on most studios' emerging-market efforts: <strong>pilots fail by being half-funded.</strong> Commit fully or don't run.
+        </p>
+        <div class="callout solve">
+          <span class="label">My Solution → Initiative 5.4</span>
+          $180K, 6-week sprint in BR + MX (iOS) and ID + PH (Android), with day-one geo-holdout incrementality. Reserve budget = zero.
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Initiatives -->
+    <section class="section" id="initiatives">
+      <h2 class="section-title"><span class="sec-num">5</span>What I'd do — five initiatives <span style="color:var(--solve)">●</span></h2>
+      <p>Each ladders to one or more of the pain points above. I'd pitch these for execution in order of the leverage-to-effort ratio.</p>
+
+      <!-- 5.1 -->
+      <article class="initiative" id="i-1">
+        <h3><span class="badge">5.1</span>Build the trust-framework layer on top of the SSOT spine</h3>
+        <p><strong>Maps to pain:</strong> 4.1 Attribution fragmentation</p>
+
+        <div class="row-mech">
+          <div class="k">Mechanic</div>
+          <div>
+            Codify a per-partner <strong>trust score across 5 dimensions</strong>:
+            <ol>
+              <li>MMP-to-network reconciliation rate</li>
+              <li>SKAN-to-probabilistic ratio (Chris's red-flag metric)</li>
+              <li>Postback completeness</li>
+              <li>Creative-ID propagation</li>
+              <li>Cohort joinability</li>
+            </ol>
+            Score every partner 1–5 on each. Apply trust-weighted discounts to reported ROAS in the channel-performance scorecard.
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Output</div>
+          <div>
+            Budget reallocation conversations stop being <em>"Meta self-reports 35% D7 ROAS, that looks fine"</em> and start being
+            <em>"Meta MMP ROAS is 21%, applied incrementality discount of 0.41 lands true incremental ROAS at roughly 8.5%, recommended -50% spend pending partner conversation."</em>
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Effort</div>
+          <div>Per-network scorecard refresh weekly + alert when any dimension drops a level. <strong>First version shippable in 30 days</strong> from existing AppsFlyer SSOT.</div>
+        </div>
+
+        <div class="callout solve">
+          <span class="label">Why it matters</span>
+          This is the artifact that turns a Director's instinct ("Meta feels overstated") into a number that <strong>travels to Finance without translation loss.</strong>
+        </div>
+      </article>
+
+      <!-- 5.2 -->
+      <article class="initiative" id="i-2">
+        <h3><span class="badge">5.2</span>The high-value-user lookalike loop</h3>
+        <p><strong>Maps to pain:</strong> 4.2 Meta-game LTV ceiling</p>
+
+        <div class="row-mech">
+          <div class="k">Mechanic</div>
+          <div>
+            Identify the top 5% of spenders across the portfolio, extract their first-party feature set (early-event signature, channel of acquisition, geo, device, pre-IAP behavioral signals),
+            seed lookalike audiences on Meta CPP, Moloco custom audiences, ASA Custom Product Pages, and TikTok. Run as a 50/50 split against standard prospecting on a 6-week test budget.
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Why us</div>
+          <div>
+            Ad-monetized portfolios don't usually invest in lookalike infrastructure because IAP signals are weaker. But our <strong>long retention curves</strong> give us a different signal —
+            early-day session depth and ad-engagement frequency are predictive of long-term ad revenue contribution.
+            <strong>We have first-party signal that competitors don't bother building.</strong>
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Expected</div>
+          <div>Higher CPI (<strong>+20–30%</strong>), but D30 ROAS ≥ 60% and 3–4× longer retention on the lookalike cohort. The economics work <em>because</em> the high-value tail compounds.</div>
+        </div>
+      </article>
+
+      <!-- 5.3 -->
+      <article class="initiative" id="i-3">
+        <h3><span class="badge">5.3</span>SKAN-optimized creative iteration engine</h3>
+        <p><strong>Maps to pain:</strong> 4.3 SKAN-aware creative cadence</p>
+
+        <div class="row-mech">
+          <div class="k">Mechanic</div>
+          <div>
+            A <strong>2-week creative testing cycle</strong> with conversion-value mapping designed for SKAN — 6 buckets covering:
+            <ul>
+              <li>D0 install</li>
+              <li>D0 first session</li>
+              <li>D0 second session</li>
+              <li>D0 paywall view</li>
+              <li>D0 IAP</li>
+              <li>D0 ad-revenue threshold</li>
+            </ul>
+            Run only on networks where creative-ID propagation scores 4+/5 in the trust framework (effectively: ASA, Meta, AppLovin, Moloco).
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Validation</div>
+          <div>A <strong>meta-test</strong>: Spearman ρ &gt; 0.6 between SKAN-readout rankings and Android determined-data rankings. If they correlate, the SKAN readouts are real.</div>
+        </div>
+
+        <div class="callout solve">
+          <span class="label">Why this fits Chris's org design</span>
+          Creative gets a clean testing surface; UA gets a scoring framework that doesn't lie under privacy constraints.
+        </div>
+      </article>
+
+      <!-- 5.4 -->
+      <article class="initiative" id="i-4">
+        <h3><span class="badge">5.4</span>Emerging-markets sprint with day-one geo holdouts</h3>
+        <p><strong>Maps to pain:</strong> 4.4 Emerging-markets under-investment</p>
+
+        <div class="row-mech">
+          <div class="k">Mechanic</div>
+          <div>
+            6-week pilot in <strong>Brazil and Mexico (iOS)</strong> + <strong>Indonesia and the Philippines (Android)</strong>. <strong>$180K test budget</strong>.
+            Geo-holdout incrementality from day one — non-negotiable for a new-geo expansion, because without it we won't be able to distinguish
+            "TikTok BR is genuinely cheap" from "we got lucky on a creative."
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Localization</div>
+          <div>
+            Localized creative hooks per market:
+            <ul>
+              <li><strong>"jogo offline"</strong> in Portuguese for BR's mobile-data-cost reality</li>
+              <li><strong>"jugar con la familia"</strong> in Spanish for MX's family-occasion gaming context</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout pain">
+          <span class="label">Hard truth</span>
+          Emerging-markets pilots fail by being half-funded. <strong>The reserve budget on this initiative should be zero — commit fully or don't run.</strong>
+        </div>
+      </article>
+
+      <!-- 5.5 -->
+      <article class="initiative" id="i-5">
+        <h3><span class="badge">5.5</span>Cross-title portfolio synergy as paid-equivalent inventory</h3>
+        <p><strong>Maps to pain:</strong> 4.1 + structural under-utilization</p>
+
+        <div class="row-mech">
+          <div class="k">Mechanic</div>
+          <div>
+            Formalize cross-promotion between Solitaire ↔ Spider ↔ TriPeaks ↔ Bubble Shooter Pop.
+            Industry benchmark for cross-promo as a share of UA mix in multi-title studios is <strong>12–18%</strong>.
+            MobilityWare's current rate is plausibly closer to <strong>3–4%</strong> based on the lack of public emphasis.
+          </div>
+        </div>
+
+        <div class="callout insight">
+          <span class="label">The hidden asset</span>
+          We're sitting on the <strong>largest piece of paid-equivalent UA inventory</strong> in the portfolio and barely using it.
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Tradeoff</div>
+          <div>
+            Every Solitaire ad slot we use for cross-promotion is third-party ad revenue we forgo. At MobilityWare's spend tier, that's likely
+            <strong>$150K/quarter</strong>. The trade is worth it if cross-promoted users have D30 LTV at parity to paid acquisition users —
+            which is the readable test design.
+          </div>
+        </div>
+
+        <div class="row-mech">
+          <div class="k">Loop back</div>
+          <div>The infrastructure question (how do we attribute a Solitaire-acquired user who installs TriPeaks 14 days later) is itself a fragmentation problem, which loops back to <a href="#i-1">Initiative 5.1</a>.</div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 6. 90 days -->
+    <section class="section" id="ninety">
+      <h2 class="section-title"><span class="sec-num">6</span>The first ninety days</h2>
+      <p>If I'm hired, the first 90 days look like this.</p>
+
+      <div class="timeline">
+        <div class="phase">
+          <div class="days">Days 1–30</div>
+          <h4>Listen and instrument</h4>
+          <ul>
+            <li>Ride along with each UA manager across all 4-ish active titles</li>
+            <li>Audit existing dashboards; produce written report on duplication, gaps, trust</li>
+            <li>Land v1 of a daily reconciliation report (feeds Initiative 5.1) — Slack-delivered every weekday at 8am PT</li>
+            <li><strong>Output @ week 4:</strong> one-page diagnostic memo for both of you</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="days">Days 31–60</div>
+          <h4>Ship reusable infrastructure</h4>
+          <ul>
+            <li>Per-network trust scorecard (refresh weekly)</li>
+            <li>Channel-performance daily scorecard (Tab 3 of the workflow)</li>
+            <li>Creative-fatigue early-warning report</li>
+            <li>Scope first incrementality test on the largest channel — likely Google UAC at portfolio scale</li>
+          </ul>
+        </div>
+        <div class="phase">
+          <div class="days">Days 61–90</div>
+          <h4>Move a metric</h4>
+          <ul>
+            <li>Run and read out the first incrementality test</li>
+            <li>Co-author the first creative testing brief with the Creative team using the SKAN-aware framework</li>
+            <li>Propose Initiative 5.4 (BR iOS expansion sprint) for execution</li>
+            <li>Lands a concrete first deliverable on Corvin's market-expansion theme</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout insight">
+        <span class="label">What I'm NOT proposing for the first 90 days</span>
+        Initiative 5.2 (whale lookalikes) depends on first-party data plumbing that may not exist on day one.
+        Initiative 5.3 (SKAN creative engine) depends on the trust framework being live first.
+        <strong>Both wait until quarter two.</strong>
+      </div>
+    </section>
+
+    <!-- 7. Closing -->
+    <section class="section" id="close">
+      <h2 class="section-title"><span class="sec-num">7</span>A closing note</h2>
+      <p>
+        The work in front of MobilityWare is the kind of work that genuinely interests me: data that's messy by structural necessity,
+        real money on the line, decisions that compound over months rather than days, and a transformation arc — from
+        <em>"buy installs cheaply, monetize via ads"</em> to <em>"identify high-LTV users, retain them with live ops, attribute correctly under privacy constraints"</em> —
+        that's already underway and needs analytical horsepower to finish.
+      </p>
+      <p>
+        <strong>Chris</strong>, your read on the post-ATT landscape and the UA-creative split is the operational frame I'd want to work inside.
+        <strong>Corvin</strong>, your long-term-value framing and the high-value-user thesis is the strategic frame I'd want to point analytical work toward.
+        Together they're the two halves of the same shift, and the gap between them is exactly where a thoughtful analyst hire creates leverage.
+      </p>
+      <p>I'd be glad to walk through any of this in detail.</p>
+      <p style="text-align:right; font-style:italic; color:var(--muted); margin-top:24px;">— Qirui</p>
+    </section>
+
+    <!-- Sources -->
+    <section class="section" id="sources">
+      <h2 class="section-title"><span class="sec-num">★</span>Sources</h2>
+      <p style="font-size:14px; color:var(--muted);">
+        Moloco 2025 <em>State of Mobile Gaming</em> (Apr 2025); InMobi MobilityWare case study (advertising.inmobi.com);
+        AppsFlyer Performance Index 2025; Adjust 2025 ATT opt-in benchmarks; Statista mobile gaming market projections via Moloco.
+        Public competitive estimates from Sensor Tower / data.ai. All inferences about MobilityWare-specific numbers are stated as inferences.
+      </p>
+    </section>
+
+    <footer>
+      © Qirui Zheng · Strategic memo · Designed for screen &amp; print · Tip: every section in the sidebar is clickable.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // Tabs
+  document.querySelectorAll('.tabs').forEach(tabGroup => {
+    const buttons = tabGroup.querySelectorAll('.tab-btn');
+    const section = tabGroup.parentElement;
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.dataset.tab;
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+        section.querySelectorAll(':scope > .tab-panel').forEach(p => {
+          p.classList.toggle('active', p.id === 'tab-' + target);
+        });
+      });
+    });
+  });
+
+  // Scrollspy
+  const navLinks = document.querySelectorAll('.nav-list a.nav-link');
+  const sections = Array.from(document.querySelectorAll('section.section, .header-block'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => { if (s.id) observer.observe(s); });
+
+  // Mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const sidebar = document.getElementById('sidebar');
+  toggle.addEventListener('click', () => sidebar.classList.toggle('open'));
+  document.querySelectorAll('.nav-list a').forEach(a =>
+    a.addEventListener('click', () => sidebar.classList.remove('open'))
+  );
+
+  // Smooth scroll (native is fine, but ensure offset feels right)
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
